@@ -64,7 +64,28 @@ function! CubitPlugin(...)
         endif
 endfunction
 
+
+function! FreezedBlocPlugin(...)
+        let args = split(a:000[0])
+
+        if len(args) < 2
+                echo "You must pass the BlocName and destinationPath like ':Bloc BlocName lib/feature_Name'"
+        else
+                let blocName = args[0]
+                let path = args[1]
+                let command = "git clone https://github.com/avatarnguyen/vim-freezed-bloc-plugin-source.git " . path . "/bloc/"
+
+                call system(command)
+
+                call RenameAndDeleteFiles("bloc.dart state.dart event.dart", 'bloc', blocName, path)
+                echo "Freezed Bloc: All done"
+        endif
+endfunction
+
+
 " Commands
 command! -nargs=* Bloc call BlocPlugin(<q-args>)
+
+command! -nargs=* FreezedBloc call FreezedBlocPlugin(<q-args>)
 
 command! -nargs=* Cubit call CubitPlugin(<q-args>)
