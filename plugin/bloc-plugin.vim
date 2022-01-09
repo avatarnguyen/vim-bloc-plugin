@@ -1,7 +1,7 @@
 " bloc generator
 " 1 - Mappings
-nnoremap K :BlocPlugin
-nnoremap K :CubitPlugin
+" nnoremap K :BlocPlugin
+" nnoremap K :CubitPlugin
 
 function RenameAndDeleteFiles(...)
         let allFiles =  split(a:000[0])
